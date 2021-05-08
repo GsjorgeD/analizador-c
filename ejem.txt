@@ -1,2 +1,9 @@
-hola cola;zdgvzv;
-ahdopihadihdp;jbkbjdjk
+include<stdio.h>
+int x=0;
+int main(void) {
+  do{
+    printf("holaa\n");
+x++;
+}while(x<5);
+
+}
