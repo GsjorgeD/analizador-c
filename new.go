@@ -21,13 +21,36 @@ func main() {
      }
 
     //fmt.Println(string(content))
-
+    pedazos := strings.Split(string(content), " ") //separa el archivo en fracmento
     verifi := strings.Contains(string(content), "#include")//hacer una funcion que cheque argumentos
     //fmt.Println(verifi)
+    numinclude := len(pedazos[0])//cuenta cuanto elementos hay en include
     if verifi==false{
     fmt.Println("error en include")
+    }else if numinclude !=8{
+      fmt.Println("error en include")
     }
-    pedazos := strings.Split(string(content), " ")
+
+
+
+//////////////////////////////verifica <> en la libreria
+    simbMenor:= strings.Contains(string(pedazos[1]), "<")
+    simbMayor := strings.Contains(string(pedazos[1]), ">")
+    leth := strings.Contains(string(pedazos[1]), ".h")
+    fmt.Println((simbMayor))
+    fmt.Println((simbMenor))
+    if simbMayor==false || simbMenor==false || leth==false{
+      fmt.Println("verifica la libreria")
+    }
+    ////verificar Int
+  //  pointer:= 2
+    //findInt := strings.Contains(string(pedazos[pointer]), "int")
+    //if findInt == true{
+      //pointer++
+        //findEqual := strings.Contains(string(pedazos[pointer]), "=")
+        //no olvidar verifiar el tipo de dato
+      //if
+    //}
 
       //***ignorar fmt.Println(pedazos)//pofdria hacer una funcion con esto y pasarle el argumento que quier
 //hacer con while que por cada line cheque hacer para las n ves de lineas que hayya
@@ -81,6 +104,8 @@ func main() {
 
     checa("#include", string(pedazos[0]))
     fmt.Println(reflect.TypeOf(verifi))//verififica que tpo de datos es
+
+
 
 
   }
