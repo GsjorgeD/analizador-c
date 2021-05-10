@@ -1,4 +1,5 @@
-#includea rrsggfdfg.h>
+1#include <rrsggfdfg.h>
+#include <rrsggfdfg.h>
 
 	main() /* Muestra un menú si no se pulsa 4 */
 	{

@@ -10,17 +10,21 @@ import (
 
 func main() {
 	////////////lectura del archivo
-	content, err := os.Open("ejem.c")
+	content2, err2 := os.Open("ejem.c")
 
-	if err != nil {
-		log.Fatal(err)
+	if err2 != nil {
+		log.Fatal(err2)
 	}
-	contentScaner := bufio.NewScanner(content)
+	contentScaner := bufio.NewScanner(content2)
 	//fmt.Println(string(content))
 	for contentScaner.Scan() {
 		if strings.Contains(contentScaner.Text(), "#include") {
 			if strings.Contains(contentScaner.Text(), "<") {
 				if strings.Contains(contentScaner.Text(), ">") {
+					if strings.Contains(contentScaner.Text(), ".h") {
+					} else {
+						fmt.Println("falta el .h")
+					}
 				} else {
 					fmt.Println("falta el >")
 				}
