@@ -17,10 +17,10 @@ func main() {
   var contadorDo int = 0
   var contadorWhile int = 0
   var numMain int = 0
-
+  var archivo string="ejem.c"
 
     //***lectura del archivo
-  content, err := ioutil.ReadFile("ejem.c")
+  content, err := ioutil.ReadFile(archivo)
     if err != nil {
       log.Fatal(err)
       }
@@ -29,9 +29,9 @@ func main() {
     findInclude := strings.Contains(string(content), "#include")//Busca include y regresa un valor Booleano
     numInclude := len(secciones[0])//Cuenta cuantos elementos hay en include
     if findInclude==false{
-    fmt.Println("Error generado en '#include'")
+    fmt.Println("Error generado: revisa en '#include'")
     }else if numInclude !=8{
-      fmt.Println("Error generado en '#include'")
+      fmt.Println("Error generado: revisa en '#include'")
     }
     //***Verifica los elementos de la libreria
     simbMenor:= strings.Contains(string(secciones[1]), "<")
@@ -42,7 +42,7 @@ func main() {
     }
     //***
     ////***Verifica nuevamente las librerias
-    content2, err2 := os.Open("ejem.c")
+    content2, err2 := os.Open(archivo) //**archivo**
    	if err2 != nil {
   	  log.Fatal(err2)
   	}
@@ -92,7 +92,7 @@ func main() {
     //***
     //***Verifica ciclo do while
     //conten3 err3 contentscanner2 contador do y contadorWhile
-    content3, err3 := os.Open("ejem.c")
+    content3, err3 := os.Open(archivo)//**archivo**
     if err3 != nil {
       log.Fatal(err3)
     }
@@ -127,9 +127,9 @@ func main() {
         }
        }
       //***
-      //*****char
+      //***Identifica si se declara una variable del tipo int y verifica si ;
      //conten4 err4 contentscanner3
-     content4, err4:=os.Open("ejem.c")
+     content4, err4:=os.Open(archivo)//**archivo**
 
      if err4 != nil {
    		log.Fatal(err4)
@@ -145,22 +145,7 @@ func main() {
           }else {
            fmt.Println("Falta asignar valor")
          }
-     } else {
-
-       if strings.Contains(contentScaner3.Text(), ";") && strings.Contains(contentScaner3.Text(), "cha"){
-         fmt.Println("char esta mal escrito")
-       } else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "chat"){
-         fmt.Println("char esta mal escrito")
-       } else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "har"){
-         fmt.Println("char esta mal escrito")
-       }else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "chart"){
-         fmt.Println("char esta mal escrito")
-       }else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "chr"){
-         fmt.Println("char esta mal escrito")
-       }else if strings.Contains(contentScaner3.Text(), "char"){
-         fmt.Println("Error generado: falta ';' en la variable char")
-       }
-       }
+     }
      }
      //***
     //***Busca llaves de apertura
@@ -211,8 +196,4 @@ func main() {
     //***
     fmt.Print("\n*** Se mostraran mensajes de error hasta que se solucionen,")
     fmt.Print(" 'compila y ejecuta si no se muestra ninguno' ***\n")
-
-
-
-
-  }
+}

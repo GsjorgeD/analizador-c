@@ -1,12 +1,12 @@
-#include <stdio.h>
+1#include <stdio.h>
 
 
 	main() /* Muestra un menú si no se pulsa 4 */
 	{
-		 char sdd ;
+		 char seleccion
 		 int var;
 
-     do{
+     d{
 	      printf("1.- Comenzar\n");
 	      printf("2.- Abrir\n");
 	      printf("3.- Grabar\n");
