@@ -1,11 +1,12 @@
-include <rrsggfdfg.h>
-#include <rrsggfdfg.h
+#include <stdio.h>
 
-	main( /* Muestra un menú si no se pulsa 4 */ main
+
+	main() /* Muestra un menú si no se pulsa 4 */
 	{
-	   char seleccion;
+		 char sdd ;
+		 int var;
 
-     do
+     do{
 	      printf("1.- Comenzar\n");
 	      printf("2.- Abrir\n");
 	      printf("3.- Grabar\n");
@@ -13,15 +14,13 @@ include <rrsggfdfg.h>
 	      printf("Escoge una opción: ");
 	      seleccion=getchar();
 	      switch(seleccion){
-		 case '1':printf("Opción 1";
+		 case '1':printf("Opción 1");
 		    break;
 		 case '2':printf("Opción 2");
 		    break;
 		 case '3':printf("Opción 3");
 		 }
 
-   }while (seleccion!='4');
-   do{
+   }while (seleccion!='4') ;
 
-   }whil
 	}

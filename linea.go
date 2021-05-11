@@ -12,25 +12,29 @@ func main() {
 	////////////lectura del archivo
 	content, err := os.Open("ejem.c")
 
-	var contadorDo int = 0
-	var contadorWhi int = 0
-
 	if err != nil {
 		log.Fatal(err)
 	}
 	contentScaner := bufio.NewScanner(content)
-	//fmt.Println(string(content))
 	for contentScaner.Scan() {
-		if strings.Contains(contentScaner.Text(), "do") {
-			contadorDo++
+		if strings.Contains(contentScaner.Text(), "char") {
+			if strings.Contains(contentScaner.Text(), " ") {
+			  if strings.Contains(contentScaner.Text(), ";") {
+						} else {
+							fmt.Println("falta el ;")
+						}
+					} else {
+						fmt.Println("asigna valor")
+					}
+				}
+		} else { if string.Contains(contentScaner.Text(), ";"){
+			fmt.Println("char mal escrito")
+		} else if {
+
 		}
-		if strings.Contains(contentScaner.Text(), "while") {
-			contadorWhi++
-		}
-	}
-	if contadorDo == contadorWhi {
-	} else {
-		fmt.Println("corregir ciclo")
 	}
 
-}
+
+		else if strings.Contains(contentScaner.Text(), "char"){
+			fmt.Println("falta el ;")
+   }}}

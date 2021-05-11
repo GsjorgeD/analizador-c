@@ -5,7 +5,6 @@ import (
     "io/ioutil"
     "log"
     "strings"
-    "reflect"
     "os"
     "bufio"
 )
@@ -16,8 +15,10 @@ func main() {
   var parenApe int = 0
   var parenEnd int = 0
   var contadorDo int = 0
-  var contadorWhi int = 0
+  var contadorWhile int = 0
   var numMain int = 0
+
+
     //***lectura del archivo
   content, err := ioutil.ReadFile("ejem.c")
     if err != nil {
@@ -26,10 +27,10 @@ func main() {
     //***
     secciones := strings.Split(string(content), " ") //Separa el archivo
     findInclude := strings.Contains(string(content), "#include")//Busca include y regresa un valor Booleano
-    numinclude := len(secciones[0])//Cuenta cuantos elementos hay en include
+    numInclude := len(secciones[0])//Cuenta cuantos elementos hay en include
     if findInclude==false{
     fmt.Println("Error generado en '#include'")
-    }else if numinclude !=8{
+    }else if numInclude !=8{
       fmt.Println("Error generado en '#include'")
     }
     //***Verifica los elementos de la libreria
@@ -90,35 +91,78 @@ func main() {
     }
     //***
     //***Verifica ciclo do while
+    //conten3 err3 contentscanner2 contador do y contadorWhile
     content3, err3 := os.Open("ejem.c")
-   	if err3 != nil {
-  	  log.Fatal(err3)
-  	}
+    if err3 != nil {
+      log.Fatal(err3)
+    }
     contentScaner2 := bufio.NewScanner(content3)
     for contentScaner2.Scan() {
       if strings.Contains(contentScaner2.Text(), "do") {
         contadorDo++
       }
-      if strings.Contains(contentScaner2.Text(), "while") {
-        contadorWhi++
+      if strings.Contains(contentScaner2.Text(), "while") && strings.Contains(contentScaner2.Text(), "(") && strings.Contains(contentScaner2.Text(), ")") {
+        contadorWhile++
       }
     }
-    if contadorDo == contadorWhi {
+    if contadorDo == contadorWhile {
     } else {
-      fmt.Println("Error generado en la estructura del ciclo do while")
+      fmt.Println("Error generado: revisa la estructura del ciclo 'do while'")
     }
     //***
+    //Identifica si se declara una variable del tipo int y verifica si ;
+     for puntero := 2; puntero < numSecciones; puntero++{
+     findInt := strings.Contains(string(secciones[puntero]), "int")
+     findPrint := strings.Contains(string(secciones[puntero]), "print")
+       if findInt == true && findPrint==false{
+         puntero++
+         findPunto := strings.Contains(string(secciones[puntero]), ";")
+         if findPunto == false{
+           puntero++
+           findPunto2 := strings.Contains(string(secciones[puntero]), ";")
+           if findPunto2 == false{
+             fmt.Println("Error generado: falta ';' en la variable int")
+           }
+         }
+        }
+       }
+      //***
+      //*****char
+     //conten4 err4 contentscanner3
+     content4, err4:=os.Open("ejem.c")
 
+     if err4 != nil {
+   		log.Fatal(err4)
+   	}
+     contentScaner3 := bufio.NewScanner(content4)
+     for contentScaner3.Scan(){
+       if strings.Contains(contentScaner3.Text(), "char"){
+         if  strings.Contains(contentScaner3.Text(), " ") {
+           if strings.Contains(contentScaner3.Text(), ";") {
+           }else {
+             fmt.Println("Error generado: falta ';' en la variable char")
+             }
+          }else {
+           fmt.Println("Falta asignar valor")
+         }
+     } else {
 
-  //  pointer:= 2
-    //findInt := strings.Contains(string(pedazos[pointer]), "int")
-    //if findInt == true{
-      //pointer++
-        //findEqual := strings.Contains(string(pedazos[pointer]), "=")
-        //no olvidar verifiar el tipo de dato
-      //if
-    //}
-
+       if strings.Contains(contentScaner3.Text(), ";") && strings.Contains(contentScaner3.Text(), "cha"){
+         fmt.Println("char esta mal escrito")
+       } else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "chat"){
+         fmt.Println("char esta mal escrito")
+       } else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "har"){
+         fmt.Println("char esta mal escrito")
+       }else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "chart"){
+         fmt.Println("char esta mal escrito")
+       }else if strings.Contains(contentScaner3.Text(), ";")&& strings.Contains(contentScaner3.Text(), "chr"){
+         fmt.Println("char esta mal escrito")
+       }else if strings.Contains(contentScaner3.Text(), "char"){
+         fmt.Println("Error generado: falta ';' en la variable char")
+       }
+       }
+     }
+     //***
     //***Busca llaves de apertura
     for index := 0; index < numSecciones; index++ {
     findLlave := strings.Contains(string(secciones[index]), "{")
@@ -165,15 +209,10 @@ func main() {
         fmt.Println("Error generado: revisa tus parentesis de apertura '('")
       }
     //***
-
-    //checa("#include", string(secciones[0]))
-    fmt.Println(reflect.TypeOf(findInclude))//verififica que tpo de datos es
-   //agregar al final una codicional para que imprema compilado con exito
+    fmt.Print("\n*** Se mostraran mensajes de error hasta que se solucionen,")
+    fmt.Print(" 'compila y ejecuta si no se muestra ninguno' ***\n")
 
 
 
-  }
-  func checa(palabra string, content string) {
-    ver := strings.Contains(string(content), palabra)
-    fmt.Println(ver)
+
   }
